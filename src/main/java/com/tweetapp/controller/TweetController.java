@@ -10,11 +10,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tweets")
+@CrossOrigin(origins = "*")
 public class TweetController {
 
     @Autowired
     private TweetService tweetService;
 
+    @GetMapping
+    public List<Tweet> getAllTweets() {
+        return tweetService.getAllTweets();
+    }
 
     @PostMapping("/{username}/add")
     public Tweet saveTweet(@RequestBody Tweet tweet, @PathVariable String username) {

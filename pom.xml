@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tweetapp</groupId>
-	<artifactId>Twiter-cloud</artifactId>
+	<artifactId>twiter-cloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Twiter-cloud</name>
+	<name>twiter-cloud</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

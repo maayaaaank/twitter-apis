@@ -3,6 +3,7 @@ package com.tweetapp.repository;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.tweetapp.exception.TweetNotFoundException;
@@ -21,6 +22,10 @@ public class TweetRepository {
 
     @Autowired
     private DynamoDBMapper mapper;
+
+    public List<Tweet> getAllTweets() {
+        return mapper.scan(Tweet.class, new DynamoDBScanExpression());
+    }
 
     public Tweet add(Tweet tweet) {
         mapper.save(tweet);

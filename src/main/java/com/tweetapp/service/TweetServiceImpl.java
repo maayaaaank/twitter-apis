@@ -6,9 +6,11 @@ import com.tweetapp.repository.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,11 +19,14 @@ public class TweetServiceImpl implements TweetService {
     @Autowired
     private TweetRepository tweetRepository;
 
+    public List<Tweet> getAllTweets() {
+        return tweetRepository.getAllTweets();
+    }
+
     public Tweet add(Tweet tweet) {
-        String date = ZonedDateTime
-                .now(ZoneId.systemDefault())
-                .format(DateTimeFormatter.ofPattern("uuuu.MM.dd.HH.mm.ss"));
-        tweet.setCreationTime(date);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd.HH.mm.ss");
+        LocalDateTime now = LocalDateTime.now();
+        tweet.setCreationTime(dtf.format(now).toString());
         return tweetRepository.add(tweet);
     }
 
@@ -38,10 +43,9 @@ public class TweetServiceImpl implements TweetService {
     }
 
     public Tweet reply(Comment comment, String tweetID, String username) {
-        String date = ZonedDateTime
-                .now(ZoneId.systemDefault())
-                .format(DateTimeFormatter.ofPattern("uuuu.MM.dd.HH.mm.ss"));
-        comment.setCreationTime(date);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd.HH.mm.ss");
+        LocalDateTime now = LocalDateTime.now();
+        comment.setCreationTime(dtf.format(now).toString());
         return tweetRepository.reply(comment, tweetID, username);
     }
 

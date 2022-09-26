@@ -6,6 +6,7 @@ import com.tweetapp.model.Tweet;
 import java.util.List;
 
 public interface TweetService {
+    List<Tweet> getAllTweets();
     Tweet add(Tweet tweet);
 
     Tweet getTweetByTweetID(String tweetID, String username);
